@@ -5,10 +5,11 @@ from django.forms import TextInput, PasswordInput, EmailInput, CharField, EmailF
 
 
 class RegisterForm(UserCreationForm):
-    username = CharField(widget=TextInput(attrs={'placeholder' :'Username'}))
-    email = EmailField(widget=EmailInput(attrs={'placeholder' :'Email'}))
-    password1 = CharField(label='Password',widget=PasswordInput(attrs={'placeholder' :'Password'}))
-    password2 = CharField(label='Password confirmation',widget=PasswordInput(attrs={'placeholder' :'Password confirmation'}))
+    username = CharField(widget=TextInput(attrs={'placeholder' :'Имя пользователя', "style": 'right:50%; transform: translate(400%, 100%);'
+}))
+    email = EmailField(label= "Почта",widget=EmailInput(attrs={'placeholder' :'Имя почты', "style": 'right:50%; transform: translate(414%, 100%);'}))
+    password1 = CharField(label='Пароль',widget=PasswordInput(attrs={'placeholder' :'Пароль', "style": 'right:50%; transform: translate(408%, 100%);'}))
+    password2 = CharField(label='Повторите пароль',widget=PasswordInput(attrs={'placeholder' :'Повторите пароль', "style": 'right:50%; transform: translate(364%, 100%);'}))
     
     class Meta:
         model = User
