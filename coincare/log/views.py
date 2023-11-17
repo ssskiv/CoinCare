@@ -1,34 +1,33 @@
 from django.shortcuts import render, redirect
 
-from django.contrib.auth import authenticate, login
-
+from django.contrib.auth import authenticate, login as dj_login
+from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from .forms import LoginForm
 
 # Create your views here.
 def login(request):
     error=''
     if request.method == 'GET':
-        form = AuthenticationForm()
+        form = LoginForm()
         data = {
             'form':form,
             'error':error
         }
         return render(request, 'log/login.html', data)
-    else:
-        form = AuthenticationForm(request,data=request.POST)
+    elif request.method == 'POST':
+        form = LoginForm(request,data=request.POST)
         if form.is_valid():
             username = form.data.get('username')
             password = form.data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)
-                return redirect('index')
-            else:
-                error='Неправильно введено имя пользователя или пароль'
+                dj_login(request,user)
+                messages.success(request,f'Hi {username.title()}, welcome back!')
+                return redirect('profile')
                 
-        else:
-            error='Неправильно введено имя пользователя или пароль'
-    return render(request, 'log/login.html', {'form':form,'error':error})
+    messages.error(request,f'Invalid username or password')
+    return render(request,'users/login.html',{'form': form})
 
 
 
