@@ -6,8 +6,15 @@ from .forms import LoginForm
 
 # Create your views here.
 def login(request):
+    error=''
     if request.method == 'GET':
         form = LoginForm()
-        return render(request, 'info/index.html', form)
+        data = {
+            'form':form,
+            'error':error
+        }
+        return render(request, 'log/login.html', data)
+    if request.method == 'POST':
+        
 
         
