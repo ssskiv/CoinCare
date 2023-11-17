@@ -10,7 +10,7 @@ def register(request):
             form.save()
             return redirect('index')
         else:
-            error='НЕВЕРНО'
+            error='НЕВЕРНО'#TODO
     form = RegisterForm()
 
     data = {
