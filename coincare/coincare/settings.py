@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'info.apps.InfoConfig',
     'reg.apps.RegConfig',
     'log.apps.LogConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
