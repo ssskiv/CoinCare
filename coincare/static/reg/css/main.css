@@ -6,18 +6,15 @@ img.background {
   position: fixed;
   top: 0;
   left: 0;
-
+  
   @media screen and (max-width: 640px){
-	img.bg {
-	  left: 50%;
-	  margin-left: -320px;
-	}
-  }
+			img.bg {
+				left: 50%;
+				margin-left: -320px; 
+      }
+		}
 }
 
-div { 
-  font-family: 'Gill Sans', 'Verdana', sans-serif;
-}
 
 #square {
   transform: translate(160%, 5%);
