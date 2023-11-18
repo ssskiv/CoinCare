@@ -8,4 +8,5 @@ urlpatterns = [
     path('register/', include('reg.urls')),
     path('login/', include('log.urls')),
     path('profile/',include('account.urls')),
+    path('investing/', include('investing.urls')),
 ]

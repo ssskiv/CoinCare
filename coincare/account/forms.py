@@ -4,6 +4,7 @@ from django.conf import settings
 
 from django.utils.translation import gettext as _
 from .models import Transaction
+from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget
 
 class TransactionForm(forms.ModelForm):
     date_formats=[
@@ -34,10 +35,10 @@ class TransactionForm(forms.ModelForm):
     day_choices=[]
     for i in range(2100,1899,-1):
         years_choices.append(str(i))
-    date=forms.DateField(label= "", widget=forms.SelectDateWidget(years=years_choices, months=month_choices),required=True)
+    date=forms.DateField(label= "", widget=AdminDateWidget(),required=True)
     comment = forms.CharField(label= "", required=False)# hh:mm
     uid=forms.IntegerField(label= "", widget=forms.HiddenInput(), required=False)
-    time=forms.TimeField(label= "", widget=forms.TimeInput(
+    time=forms.TimeField(label= "", widget=AdminTimeWidget(
                                                 #input_formats=time_formats,
                                                 attrs={'placeholder':'hh:mm'}),
                                                 required=True)
