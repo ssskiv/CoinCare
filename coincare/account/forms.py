@@ -34,10 +34,10 @@ class TransactionForm(forms.ModelForm):
     day_choices=[]
     for i in range(2100,1899,-1):
         years_choices.append(str(i))
-    date=forms.DateField(widget=forms.SelectDateWidget(years=years_choices, months=month_choices),required=True)
-    comment = forms.CharField(required=False)# hh:mm
-    uid=forms.IntegerField(widget=forms.HiddenInput(), required=False)
-    time=forms.TimeField(widget=forms.TimeInput(
+    date=forms.DateField(label= "", widget=forms.SelectDateWidget(years=years_choices, months=month_choices),required=True)
+    comment = forms.CharField(label= "", required=False)# hh:mm
+    uid=forms.IntegerField(label= "", widget=forms.HiddenInput(), required=False)
+    time=forms.TimeField(label= "", widget=forms.TimeInput(
                                                 #input_formats=time_formats,
                                                 attrs={'placeholder':'hh:mm'}),
                                                 required=True)
