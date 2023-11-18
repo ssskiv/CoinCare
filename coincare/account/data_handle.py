@@ -20,6 +20,7 @@ class DataHandle():
     plots = []
     request = None
 
+
     def __init__(self, request, transactions) -> None:
         self.request = request
         if transactions != None:
@@ -78,8 +79,12 @@ class DataHandle():
         }
 
         if not data1.empty:
-            grouped = pd.DataFrame(columns=['Месяц','Сумма'])
+            grouped = pd.DataFrame(columns=['Месяц','Сумма', 'Операция'])
 
             grouped['Месяц'] = data1.apply(lambda x: months[int(str(x['Дата'])[5:7])],axis =1)
+            grouped['Сумма']=data1.apply(lambda x: int(x['Сумма']) if x['Тип транзакции'] else -int(x['Сумма']),axis =1 )
+            grouped['Операция']=data1.apply(lambda x: "Начисление" if x['Тип транзакции'] else "Списание",axis =1 )
             messages.info(self.request, grouped.to_string())#str(data1.iloc[0,3])[5:7]
+            self.plots.append(plot(px.histogram(grouped, x='Месяц', y='Сумма', color='Операция', barmode='group'), output_type='div'))
+
             pass
