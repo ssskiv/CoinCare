@@ -29,7 +29,7 @@ def login(request):
                     return redirect('profile')
                     
         messages.error(request,f'Invalid username or password')
-        return render(request,'users/login.html',{'form': form})
+        return render(request,'log/login.html',{'form': form})
     else:
         return redirect('profile')
 

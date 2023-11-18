@@ -14,7 +14,7 @@ def index(request):
     if not isinstance(user, AnonymousUser):
 
         transactions = Transaction.objects.filter(uid=user.id)
-        dh=DataHandle(transactions)
+        dh=DataHandle(request,transactions)
         return render(request, 'account/index.html', {'user': user, 'list': transactions, 'data':dh, 'table':dh.html})
 
     else:

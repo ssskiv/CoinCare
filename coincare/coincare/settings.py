@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'reg.apps.RegConfig',
     'log.apps.LogConfig',
     'account.apps.AccountConfig',
+    'investing.apps.InvestingConfig',
 ]
 
 MIDDLEWARE = [

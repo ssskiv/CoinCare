@@ -32,7 +32,7 @@ class TransactionForm(forms.ModelForm):
     12: _("dec"),
 }
     day_choices=[]
-    for i in range(1900,2101):
+    for i in range(2100,1899,-1):
         years_choices.append(str(i))
     date=forms.DateField(widget=forms.SelectDateWidget(years=years_choices, months=month_choices),required=True)
     comment = forms.CharField(required=False)# hh:mm

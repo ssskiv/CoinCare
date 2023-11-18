@@ -4,19 +4,19 @@ from django.utils.translation import gettext as _
 class Transaction(models.Model):
 
     class Categories(models.IntegerChoices): 
-        CLOTHES=0, _('Clothes')
-        SUPERMARKETS=1, _('Supermarkets')
-        RESTARAUNTS=2,_('Restaraunts')
-        SERVICE=3,_('Service')
-        FINANCIAL=4,_('Financial')
-        MEDICINE=5,_('Medicine')
-        SALARY=6,_('Salary')
-        DEBT=7,_('Debt')
-        GIFT=8,_('Gift')
-        FUN=9,_('Fun')
-        INIT = 10, _('Initial')
+        CLOTHES=0, _('Одежда')
+        SUPERMARKETS=1, _('Супермаркеты')
+        RESTARAUNTS=2,_('Рестораны')
+        SERVICE=3,_('Сфера обслуживания')
+        FINANCIAL=4,_('Финансы')
+        MEDICINE=5,_('Медицина')
+        SALARY=6,_('Зарплата')
+        DEBT=7,_('Долги')
+        GIFT=8,_('Подарки')
+        FUN=9,_('Развлечения')
+        INIT = 10, _('Начальная сумма')
 
-        __empty__ = _("Other")
+        OTHER = 11, _("Другое")
     '''CATEGORIES=[
         (CLOTHES, 'Clothes'),
         (SUPERMARKETS, 'Supermarkets'),
