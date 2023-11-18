@@ -9,7 +9,8 @@ from .forms import TransactionForm
 def index(request):
     user= request.user
     if not isinstance(user, AnonymousUser):
-        return render(request, 'account/index.html', {'user':user})
+        transactions = Transaction.objects.filter(uid=user.id)
+        return render(request, 'account/index.html', {'user':user, 'list':transactions})
     else:
         return redirect('index')
 

@@ -8,6 +8,7 @@
 <body>
     <p>Здравствуйте, {{ user.username }}, Ваш ID:{{ user.id }}</p>
     <p>Ваши транзакции:</p>
+    {{ list }}
     <a href="{% url "add" %}">Добавить транзакцию</a>
     <a href="{% url "logout" %}">Выйти из аккаунта</a>
 </body>
