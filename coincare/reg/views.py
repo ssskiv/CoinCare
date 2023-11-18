@@ -8,7 +8,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('account')
+            return redirect('profile')
         else:
             error='НЕВЕРНО'#TODO
     form = RegisterForm()

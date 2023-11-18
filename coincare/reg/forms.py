@@ -6,7 +6,7 @@ from django.forms import TextInput, PasswordInput, EmailInput, CharField, EmailF
 
 class RegisterForm(UserCreationForm):
     username = CharField(label= "", widget=TextInput(attrs={'placeholder' :'Имя пользователя'}))
-    email = EmailField(label= "", widget=EmailInput(attrs={'placeholder' :'Имя почты'}))
+    email = EmailField(label= "", widget=EmailInput(attrs={'placeholder' :'Электронная почта'}))
     password1 = CharField(label= "", widget=PasswordInput(attrs={'placeholder' :'Пароль'}))
     password2 = CharField(label= "" ,widget=PasswordInput(attrs={'placeholder' :'Повторите пароль'}))
     
