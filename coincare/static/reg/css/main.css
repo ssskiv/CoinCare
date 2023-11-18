@@ -6,29 +6,38 @@ img.background {
   position: fixed;
   top: 0;
   left: 0;
-  
-  @media screen and (max-width: 640px){
-			img.bg {
-				left: 50%;
-				margin-left: -320px; 
-      }
-		}
+
+  @media screen and (max-width: 640px) {
+    img.bg {
+      left: 50%;
+      margin-left: -320px;
+    }
+  }
 }
 
 
 #square {
   transform: translate(160%, 5%);
-   width: 430px;
-   height: 380px;
+  width: 430px;
+  height: 380px;
   background: rgb(255, 255, 255);
 }
 
 
-.text-center{
+.text-center {
   bottom: -10%;
 }
 
-.btn{
+.btn {
   border: 1px solid #2b2829;
   box-shadow: 1px 1px 1px rgb(44, 42, 42);
+}
+
+.col {
+  background: #aaaaaa;
+  border: 1px solid #000;
+}
+
+.container {
+  display: flex;
 }
