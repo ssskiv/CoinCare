@@ -5,7 +5,7 @@ from .forms import RegisterForm
 def register(request):
     error=''
     if request.method =='POST':
-        form = RegisterForm(request.POST)
+        form = RegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('profile')

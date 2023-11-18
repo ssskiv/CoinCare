@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    {{ id }}
+    <p>Здравствуйте, {{ user.username }}, Ваш ID:{{ user.id }}</p>
+    <p>Ваши транзакции:</p>
+    <a href="{% url "add" %}">Добавить транзакцию</a>
     <a href="{% url "logout" %}">Выйти из аккаунта</a>
 </body>
 </html>
