@@ -1,11 +1,15 @@
-img.background {
+.background {
   min-height: 100%;
-  min-width: 640px;
+  min-width: 100%;
   width: 100%;
-  height: auto;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 
   @media screen and (max-width: 640px) {
     img.bg {
@@ -17,20 +21,36 @@ img.background {
 
 
 #square {
-  transform: translate(160%, 5%);
-  width: 430px;
-  height: 380px;
+  transform: translate(160%, -40%);
+   width: 430px;
+   height: 380px;
   background: rgb(255, 255, 255);
 }
 
-
-.text-center {
-  bottom: -10%;
+.logo{
+  position: static;
+  text-align: center;
+  margin-left: 2vw;
+  margin-top: -30px;
+  width: 180px;
+  height: 180px;
+  z-index: 1;
 }
 
-.btn {
-  border: 1px solid #2b2829;
-  box-shadow: 1px 1px 1px rgb(44, 42, 42);
+
+.text-center{
+  margin-bottom: 25px;
+  margin-top: 25px;
+  position: static;
+}
+
+.btn{
+  border: 0px solid #2b2829;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: static;
+  box-shadow: 0px 0px 0px rgb(44, 42, 42);
+  background-color: #68F9A2;  
 }
 
 .col {

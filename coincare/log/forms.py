@@ -4,5 +4,5 @@ from django.contrib.auth.models import User
 from django.forms import TextInput, PasswordInput, EmailInput, CharField, EmailField
 
 class LoginForm(AuthenticationForm):
-    username = CharField(label= '' ,widget=TextInput(attrs={'placeholder':'Username'}))
-    password = CharField(label= '' ,widget=PasswordInput(attrs={'placeholder':'Password'}))
+    username = CharField(label= '' ,widget=TextInput(attrs={'placeholder':'Имя пользователя', "style": "margin_top: 1000px;"}))
+    password = CharField(label= '' ,widget=PasswordInput(attrs={'placeholder':'Пароль'}))
