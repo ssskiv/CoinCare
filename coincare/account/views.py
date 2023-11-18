@@ -5,47 +5,55 @@ from django.contrib.auth.models import AnonymousUser
 
 from .models import Transaction
 from .forms import TransactionForm
+from .data_handle import DataHandle
+
 
 def index(request):
-    user= request.user
+    user = request.user
+
     if not isinstance(user, AnonymousUser):
+
         transactions = Transaction.objects.filter(uid=user.id)
-        return render(request, 'account/index.html', {'user':user, 'list':transactions})
+        dh=DataHandle(transactions)
+        return render(request, 'account/index.html', {'user': user, 'list': transactions, 'data':dh, 'table':dh.html})
+
     else:
         return redirect('index')
+
 
 def logout_view(request):
     logout(request)
     return redirect('index')
 
+
 '''def get_user_transactions(request):
     data = Transaction.objects.'''
+
+
 def add_transaction(request):
-    error=''
+    error = ''
 
     if request.method == 'POST':
 
         request.POST = request.POST.copy()
-        request.POST['uid']=request.user.id
+        request.POST['uid'] = request.user.id
         form = TransactionForm(data=request.POST)
         '''obj = form.save(commit=False)
         obj.uid=request.user.id
         form = obj'''
-        error+=str( form['uid'])
-        
-        #form.Meta.model.uid=request.user.id
-        
+        error += str(form['uid'])
+
+        # form.Meta.model.uid=request.user.id
+
         if form.is_valid():
             form.save()
             return redirect('profile')
         else:
-            error+=str(form.errors)
-            error+='НЕВЕРНО'#TODO
+            error += str(form.errors)
+            error += 'НЕВЕРНО'  # TODO
 
-
-    
     data = {
-            'form':TransactionForm,
-            'error':error,
-        }
-    return render(request,'account/add_transaction.html', data)
+        'form': TransactionForm,
+        'error': error,
+    }
+    return render(request, 'account/add_transaction.html', data)
