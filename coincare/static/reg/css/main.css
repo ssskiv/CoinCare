@@ -1,0 +1,34 @@
+img.background {
+  min-height: 100%;
+  min-width: 640px;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  @media screen and (max-width: 640px){
+			img.bg {
+				left: 50%;
+				margin-left: -320px; 
+      }
+		}
+}
+
+
+#square {
+  transform: translate(160%, 5%);
+   width: 430px;
+   height: 380px;
+  background: rgb(248, 248, 248);
+}
+
+
+.text-center{
+  bottom: -10%;
+}
+
+.btn{
+  border: 1px solid #2b2829;
+  box-shadow: 1px 1px 1px rgb(44, 42, 42);
+}
