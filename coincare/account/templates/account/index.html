@@ -12,6 +12,7 @@
       href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
       rel="stylesheet"
     />
+
 </head>
 <body class="container">
     <p>Здравствуйте, {{ user.username }}</p>
@@ -32,34 +33,36 @@
 
         <div class="row">
           <div class="col">
-            {{ dh.plots[0]|safe }}
+            {% autoescape off %}
+            {{ data.barplot }}
+            {% endautoescape %}
           </div>
         </div>
 
         <div class="row">
             <div class="col">
-              1 of 3
+                {% autoescape off %}
+                {{ data.lineplot }}
+                {% endautoescape %}
             </div>
           </div>
 
           <div class="row">
             <div class="col">
-              1 of 3
+                {% autoescape off %}
+                {{ data.cfplot }}
+                {% endautoescape %}
             </div>
             <div class="col">
-                2 of 3
+                {% autoescape off %}
+                {{ data.pieplot }}
+                {% endautoescape %}
               </div>
           </div>
           
             
         
     </div>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    
 </body>
 </html>

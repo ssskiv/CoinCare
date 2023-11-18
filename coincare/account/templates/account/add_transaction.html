@@ -1,13 +1,21 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script src="{% url 'js-catlog' %}"></script>
+    <script src="{% static '/admin/js/core.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
+
 </head>
     <body>
         <form method='post'>
             {% csrf_token %}
+            {{ form.media }}
             {{ form.as_p }}
             <button class='btn btn-success' type='submit'>Добавить</button>
             {{ error }}

@@ -15,7 +15,8 @@ def index(request):
 
         transactions = Transaction.objects.filter(uid=user.id)
         dh=DataHandle(request,transactions)
-        return render(request, 'account/index.html', {'user': user, 'list': transactions, 'data':dh, 'table':dh.html})
+        dh.generate_plots()
+        return render(request, 'account/index.html', {'user': user, 'list': transactions, 'data':dh, 'table':dh.html, 'barplot':dh.barplot})
 
     else:
         return redirect('index')
