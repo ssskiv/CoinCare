@@ -1,15 +1,11 @@
 import pandas as pd
-
 from .models import Transaction
-
 from datetime import date
 import time
-
 import plotly as plt
 import plotly.express as px
 from plotly.offline import plot
 from plotly.graph_objs import Scatter, Bar
-
 from django.contrib import messages
 
 
