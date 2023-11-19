@@ -3,7 +3,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('',views.index, name = 'investing'),
+    path('',views.index, name = 'investing'),#127.0.0.1:8000/investing/a/
     path('add', views.add_trade, name='add_trade'),
-    path('all', views.all_trades, name='all_trades'),
 ]

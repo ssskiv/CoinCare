@@ -9,5 +9,4 @@ urlpatterns = [
     path('logout',views.logout_view, name = 'logout'),
     path('jsi18n', JavaScriptCatalog.as_view(), name='js-catlog'),
     path('add',views.add_transaction, name='add'),
-    path('all',views.all_transactions, name='all_transactions')
 ]

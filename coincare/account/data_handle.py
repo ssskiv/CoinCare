@@ -19,7 +19,6 @@ class DataHandle():
     pieplot=None
     cfplot=None
     request = None
-    full_html=""
 
     def __init__(self, request, transactions) -> None:
         self.request = request
@@ -43,7 +42,7 @@ class DataHandle():
                 'Тип транзакции', 'Сумма', 'Категория', 'Дата', 'Время', 'Комментарий']
             ).sort_values(by=['Дата', 'Время'], ascending=False)
             df = pd.DataFrame(data=data, columns=['Тип транзакции', 'Сумма', 'Категория', 'Дата', 'Время', 'Комментарий']
-                              ).sort_values(by=['Дата', 'Время'], ascending=False)
+                              ).sort_values(by=['Дата', 'Время'], ascending=False).head(5)
 
             # df['Категория'] = df['Категория'].to_string()
             df['Тип транзакции'] = df.apply(
@@ -51,8 +50,7 @@ class DataHandle():
             df['Категория'] = df.apply(
                 func=(lambda x: Transaction.Categories(int(x['Категория'])).label), axis=1)
             # ВОТ ТУТ КЛАССЫ ДЛЯ ТАБЛИЦЫ
-            self.full_html=df.to_html(classes='table', index=False)
-            self.html = df.head(5).to_html(classes='table', index=False)
+            self.html = df.to_html(classes='table', index=False)
 
     def generate_plots(self):
 
@@ -131,3 +129,4 @@ class DataHandle():
 
             self.cfplot=plot(px.bar(data4, x='Дата', y='Сумма', color = 'Категория', barmode='group'), output_type='div')
             
+

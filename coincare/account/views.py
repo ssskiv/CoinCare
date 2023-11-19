@@ -58,8 +58,3 @@ def add_transaction(request):
         'error': error,
     }
     return render(request, 'account/add_transaction.html', data)
-def all_transactions(request):
-        user = request.user
-        transactions = Transaction.objects.filter(uid=user.id)
-        dh=DataHandle(request,transactions)
-        return render(request, 'account/table.html',{'table':dh.full_html})
