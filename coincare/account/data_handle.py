@@ -71,11 +71,15 @@ class DataHandle():
 
         data2 = grouped.groupby('Дата')['Сумма'].sum()
 
+
         data3=df.apply(lambda x: x if str(x['Дата'])[
                          # df[str(df['Дата'])[:4]==year]
                          5:7] == str(month) else None, axis=1)
         data3=data3.dropna()
-        data3=data3[data3['Тип транзакции']==False]
+        if data3.empty:
+            pass
+        else:
+            data3=data3[data3['Тип транзакции']==False]
 
         data4=df[df['Тип транзакции']==False]
        # messages.info(self.request, data2.to_string())#str(data1.iloc[0,3])[5:7]
