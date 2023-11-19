@@ -30,19 +30,18 @@ header{
     background: linear-gradient(to right, #edf9f9 0%,#edf9f9 100%);
     background-size: contain;
 }
-
-.Trying {
-    background-image: url("/Images/Trying.svg"); height:max-content;
+/*  .Trying {
+    background-image: url("{% static 'reg/img/Trying.svg' %}"); height:max-content;
     
-}
-
+}*/
 /* start navbar */
 .navbar {
-    background-color: #fff;
+    background-color: #ebf9f6;
     height: 80px;
     border-radius: 16px;
     padding: 0.5rem;
 }
+
 
 .navbar-brand {
     font-weight: 500;
@@ -52,9 +51,9 @@ header{
 }
 
 .login-button {
-    background-color: #423b8f;
+    background-color: #ff83c6;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     padding: 8px 20px;
     border-radius: 50px;
     text-decoration: none;
@@ -62,7 +61,7 @@ header{
 }
 
 .login-button:hover {
-    background-color: #ff83c6;
+    background-color: #00b383;
 }
 
 .navbar-toggler {
@@ -104,4 +103,5 @@ header{
         visibility: visible;
     }
 }
+
 /* end navbar */
