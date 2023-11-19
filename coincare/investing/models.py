@@ -9,6 +9,7 @@ class Trade(models.Model):
     quantity = models.IntegerField()
     date=models.DateField()
     time=models.TimeField()
+    trade_price=models.FloatField()
 
     def __str__(self) -> str:
         return f'{self.uid} купил {self.token}'
