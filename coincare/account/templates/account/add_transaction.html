@@ -1,10 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+<link rel="stylesheet" href="{% static 'reg/css/main.css' %}">
+<div class = "background" style="background-image: url({% static 'reg/img/image2.png' %})">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Личный кабинет</title>
 
     <script src="{% url 'js-catlog' %}"></script>
     <script src="{% static '/admin/js/core.js' %}"></script>
@@ -13,12 +16,13 @@
 
 </head>
     <body>
-        <form method='post'>
+        <div id="square" style=" margin-top: 10%; border-radius: 30px; border: 1px solid #4e4444; box-shadow: 0px 0px 0px rgb(44, 42, 42);">
+            <form method="post" style=" text-align: center;">
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
             <button class='btn btn-success' type='submit'>Добавить</button>
             {{ error }}
-        </form>
-    </body>
+        </form> </div>
+    </body> 
 </html>
