@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ваш кабинет</title>
+    <title>Личный кабинет</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'reg/css/main.css' %}">
-    <div class = "background" style="background-image: url({% static 'reg/img/image2.png' %})">
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link
       href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
@@ -21,8 +21,10 @@
       </style>
 
 </head>
-<body class="container">
-    <p class="text-center" style="margin-left: 0vw; font-size: 280%; font-family: Arial, trebuchet, sans-serif;  font-weight: bold; font-size: 280%">Здравствуйте, {{ user.username }}</p>
+<body>
+<div class = "background" style="background-image: url({% static 'reg/img/image2.png' %})">
+  <div class="container">
+  <p class="text-center" style="margin-left: 0vw; font-size: 280%; font-family: Arial, trebuchet, sans-serif;  font-weight: bold; font-size: 280%">Здравствуйте, {{ user.username }}</p>
     <div style="margin-left: 22vw;">
     <button class = 'btn btn-warning'><a href="{% url "add" %}" class="blacktext" style="font-size: 120%; text-decoration: none;">Добавить транзакцию</a></button>
     <button class = 'btn btn-warning'><a href="{% url "investing" %}" class="blacktext" style="font-size: 120%; text-decoration: none">Инвестиции</a></button>
@@ -67,6 +69,7 @@
             
         
     </div>
-    
+  </div>  
+  </div>
 </body>
 </html>

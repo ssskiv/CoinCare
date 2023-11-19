@@ -56,10 +56,20 @@
 }
 
 .col {
-  background: #aaaaaa;
-  border: 1px solid #000;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
 }
+
 .table{
+  
+  background-color: aqua;
   margin-left: auto;
   margin-right: auto;
+}
+
+.row {
+  border-radius: 5px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
 }
