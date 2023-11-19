@@ -56,10 +56,12 @@
 }
 
 .col {
-  background: #aaaaaa;
+  background: #fffefe;
   border: 1px solid #000;
+  border-radius: 10px;
 }
 .table{
   margin-left: auto;
   margin-right: auto;
+  border-radius: 10px;
 }
