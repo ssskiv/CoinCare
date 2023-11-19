@@ -23,10 +23,11 @@
 </head>
 <body class="container">
     <p class="text-center" style="margin-left: 0vw; font-size: 280%; font-family: Arial, trebuchet, sans-serif;  font-weight: bold; font-size: 280%">Здравствуйте, {{ user.username }}</p>
-    <div style="margin-left: 22vw;">
+    <div style="margin-left: auto; margin-right:auto;"class='text-center'>
       <button class = 'btn btn-warning'><a href="{% url "add_trade" %}" class="blacktext" style="font-size: 120%; text-decoration: none;">Добавить сделку</a></button>
       <button class = 'btn btn-warning'><a href="{% url "logout" %}" class="blacktext" style="font-size: 120%; text-decoration: none">Выйти из аккаунта</a></button>
       <button class = 'btn btn-warning'><a href="{% url "profile" %}" class="blacktext"  style="font-size: 120%; text-decoration: none">Профиль</a></button>
+      <button class = 'btn btn-warning'><a href="{% url "all_trades" %}" class="blacktext"  style="font-size: 120%; text-decoration: none">Все сделки</a></button>
     </div>
     <div class="container text-center">
         <div class="row">
@@ -58,8 +59,6 @@
             </div>
             
           </div>
-          
-            
         
     </div>
 </body>
