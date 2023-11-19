@@ -34,19 +34,21 @@
             {% endautoescape %}
           </div>
         </div>
-
-
+        
+        <div class="row">
+        <div class="col">
+            {% autoescape off %}
+            {{ data.pieplot }}
+            {% endautoescape %}
+          </div>
+        </div>
           <div class="row">
             <div class="col">
                 {% autoescape off %}
                 {{ data.cfplot }}
                 {% endautoescape %}
             </div>
-            <div class="col">
-                {% autoescape off %}
-                {{ data.pieplot }}
-                {% endautoescape %}
-              </div>
+            
           </div>
           
             
