@@ -52,14 +52,20 @@ class TradesHandle():
                 lambda x: 'Продажа' if x['Тип сделки'] else 'Покупка', axis=1)
             self.html = df.to_html(classes='table', index=False)
     def get_price(self, token):
-        url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={token}&apikey={self.key}'
-        r = requests.get(url)
-        data = r.json()
         today = date.today().day-2
         year = date.today().year
         month = date.today().month
-        price = data['Time Series (Daily)'][f'{year}-{month}-{today}']['4. close']
-        return price
+
+        #url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={token}&apikey={self.key}'
+        url = f'http://iss.moex.com/iss/engines/stock/markets/shares/securities/{token}/candles.json?from={year}-{month}-{today}&interval=24'
+        r = requests.get(url)
+        data = r.json()['candles']['data']
+        if len(data)>0:
+            price = data[0][1]
+         
+            return price
+        else:
+            return -1
 
     def generate_plots(self):
         df = self.df
@@ -67,7 +73,9 @@ class TradesHandle():
 
         data1=df[df['Тип сделки']==False]
         data1.groupby('Токен')['Стоимость при покупке'].mean()
+
         if not data1.empty:
             self.barplot=plot(px.histogram(data1, x='Токен', y='Стоимость при покупке', barmode='group'),output_type='div')
-        
-        
+            self.pieplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость при покупке'),output_type='div')
+            self.cfplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость сейчас'),output_type='div')
+
