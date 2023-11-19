@@ -35,13 +35,15 @@ class TransactionForm(forms.ModelForm):
     day_choices=[]
     for i in range(2100,1899,-1):
         years_choices.append(str(i))
-    date=forms.DateField(label= "", widget=AdminDateWidget(),required=True)
-    comment = forms.CharField(label= "", required=False)# hh:mm
-    uid=forms.IntegerField(label= "", widget=forms.HiddenInput(), required=False)
-    time=forms.TimeField(label= "", widget=AdminTimeWidget(
-                                                #input_formats=time_formats,
-                                                attrs={'placeholder':'hh:mm'}),
+    date=forms.DateField(label= "Дата", widget=AdminDateWidget(attrs={'placeholder':"Введите дату"}),required=True)
+    comment = forms.CharField(label= "Комменатрий", required=False, widget=forms.TextInput(attrs={"placeholder":"Добавьте комментарий"})) 
+    uid=forms.IntegerField(label= "ID пользователя", widget=forms.HiddenInput(), required=False)
+    time=forms.TimeField(label= "Время", widget=AdminTimeWidget(
+                                                attrs={'placeholder':'Укажите время'}),
                                                 required=True)
+    sum=forms.IntegerField(label="", widget=forms.NumberInput(attrs={'placeholder': "Укажите сумму"}),required=True)
+    #category_id=forms.ChoiceField(widget=forms.choic())
+
     
     class Meta:
         model = Transaction
