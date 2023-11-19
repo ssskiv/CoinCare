@@ -13,6 +13,7 @@ import plotly.express as px
 from plotly.offline import plot
 from plotly.graph_objs import Scatter, Bar
 from django.contrib import messages
+from plotly.subplots import make_subplots
 
 class TradesHandle():
     key='G0DBWYM63WEJLTIG'#API KEY  IOGRGGJFMMTXXGOP
@@ -23,7 +24,7 @@ class TradesHandle():
     barplot = None
     lineplot = None
     pieplot=None
-    cfplot=None
+    cfplot=[]
     request = None
 
     def __init__(self, request, trades) -> None:
@@ -70,6 +71,9 @@ class TradesHandle():
     def generate_plots(self):
         df = self.df
 
+        today = date.today().day-2
+        year = date.today().year
+        month = date.today().month
 
         data1=df[df['Тип сделки']==False]
         data1.groupby('Токен')['Стоимость при покупке'].mean()
@@ -77,5 +81,25 @@ class TradesHandle():
         if not data1.empty:
             self.barplot=plot(px.histogram(data1, x='Токен', y='Стоимость при покупке', barmode='group'),output_type='div')
             self.pieplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость при покупке'),output_type='div')
-            self.cfplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость сейчас'),output_type='div')
+            tokens = pd.unique(data1['Токен'])
+            plots=[]
+            for o in tokens:
+                j = requests.get(f'http://iss.moex.com/iss/engines/stock/markets/shares/securities/{o}/candles.json?from={year-1}-{month}-{today}&till={year}-{month}-{today}&interval=24')
+                j=j.text.encode('ascii','ignore')
+                j=j.decode()
+                messages.info(self.request, j)
+                j=json.loads(j)
+
+                if len(j['candles']['data'])>0:
+                    data = [{k : r[i] for i, k in enumerate(j['candles']['columns'])} for r in j['candles']['data']]
+                    frame = pd.DataFrame(data)
+                    fig=px.line(list(frame['close'])).update_traces(showlegend=False)
+                    fig.update_xaxes(title_text = '')
+                    fig.update_yaxes(title_text = f' {str(o)}')
+                    plots.append(plot(fig,output_type='div'))
+            self.cfplot=plots
+                
+            
+            #self.cfplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость сейчас'),output_type='div')
+            #j = requests.get(f'http://iss.moex.com/iss/engines/stock/markets/shares/securities/{token}/candles.json?from={year-1}-{month}-{today}&till={year}-{month}-{today}&interval=24').json()
 
