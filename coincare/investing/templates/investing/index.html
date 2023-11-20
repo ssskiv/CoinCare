@@ -53,9 +53,17 @@
         </div>
           <div class="row">
             <div class="col">
-                {% autoescape off %}
-                {{ data.cfplot }}
-                {% endautoescape %}
+                
+
+                {% if data.cfplot %}
+
+                    {% for plot in data.cfplot %}
+                    {% autoescape off %}
+                    {{ plot }}
+                    {% endautoescape %}
+                    {% endfor %}
+
+                {% endif %}
             </div>
             
           </div>

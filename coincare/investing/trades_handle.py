@@ -88,10 +88,11 @@ class TradesHandle():
             plots=[]
             for o in tokens:
                 j = requests.get(f'http://iss.moex.com/iss/engines/stock/markets/shares/securities/{o}/candles.json?from={year-1}-{month}-{today}&till={year}-{month}-{today}&interval=24')
-                j=j.text.encode('ascii','ignore')
-                j=j.decode()
+                j.encoding='utf-8'
+                #j=j.content.encode('ascii','ignore')
+                #j=j.decode()
                 messages.info(self.request, j)
-                j=json.loads(j)
+                j=json.loads(j.text)
 
                 if len(j['candles']['data'])>0:
                     data = [{k : r[i] for i, k in enumerate(j['candles']['columns'])} for r in j['candles']['data']]
