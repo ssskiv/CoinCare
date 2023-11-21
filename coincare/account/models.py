@@ -29,10 +29,14 @@ class Transaction(models.Model):
         (GIFT, 'Gift'),
         (FUN, 'Fun'),
     ]'''
+    CATEGORIES = (
+        (False, 'Пополнение'),
+        (True, 'Списание')
+    )
 
     uid = models.BigIntegerField()
     sum = models.BigIntegerField()
-    transaction_type = models.BooleanField()
+    transaction_type = models.BooleanField(choices=CATEGORIES, default=False)
     category_id= models.IntegerField(default=Categories.GIFT,choices=Categories.choices)
     date=models.DateField()
     time=models.TimeField()
