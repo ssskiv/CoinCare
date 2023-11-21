@@ -113,23 +113,23 @@ class DataHandle():
                     lambda x: "Начисление" if x['Тип транзакции'] else "Списание", axis=1)
                 # messages.info(self.request, grouped.to_string())#str(data1.iloc[0,3])[5:7]
                 self.plots.append(plot(px.histogram(
-                    grouped, x='Месяц', y='Сумма', color='Операция', barmode='group'), output_type='div'))
+                    grouped, x='Месяц', y='Сумма', color='Операция', barmode='group'), output_type='div', include_plotlyjs=False, show_link=False, link_text=""))
                 self.barplot = plot(px.histogram(
-                    grouped, x='Месяц', y='Сумма', color='Операция', barmode='group'), output_type='div')
+                    grouped, x='Месяц', y='Сумма', color='Операция', barmode='group'), output_type='div', include_plotlyjs=False, show_link=False, link_text="")
                 
             if not data2.empty:
                 self.lineplot=plot(px.line(data2, labels={
                     'value':'Сумма на счету',
-                }).update_traces(showlegend=False), output_type='div')
+                }).update_traces(showlegend=False), output_type='div', include_plotlyjs=False, show_link=False, link_text="")
 
             if not data3.empty:
                 grouped = pd.DataFrame(columns=['Сумма'])
                 grouped=data3.groupby('Категория')['Сумма'].sum()
                 #messages.info(self.request, grouped.to_string())#str(data1.iloc[0,3])[5:7]
-                self.pieplot=plot(px.pie(grouped, names = grouped.index, values = grouped.values),output_type='div')
+                self.pieplot=plot(px.pie(grouped, names = grouped.index, values = grouped.values),output_type='div', include_plotlyjs=False, show_link=False, link_text="")
 
             if not data4.empty:
                 grouped = pd.DataFrame(columns=['Дата','Категория','Сумма'])
 
-                self.cfplot=plot(px.bar(data4, x='Дата', y='Сумма', color = 'Категория', barmode='group'), output_type='div')
+                self.cfplot=plot(px.bar(data4, x='Дата', y='Сумма', color = 'Категория', barmode='group'), output_type='div', include_plotlyjs=False, show_link=False, link_text="")
                 
