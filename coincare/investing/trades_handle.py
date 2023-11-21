@@ -27,7 +27,6 @@ class TradesHandle():
     cfplot=[]
     request = None
     full_html='TABLE HERE'
-    tokens=[]
 
     def __init__(self, request, trades) -> None:
         self.request = request
@@ -36,7 +35,7 @@ class TradesHandle():
             for item in trades:
                 a = []
                 a.append(item.trade_type)
-                a.append(str.upper(item.token))
+                a.append(item.token)
                 a.append(int(item.quantity))
                 a.append(item.date)
                 a.append(item.time)
@@ -44,8 +43,7 @@ class TradesHandle():
                 a.append(self.get_price(item.token))
                 a.append(item.trade_price*item.quantity)
                 a.append(float(a[-2])*item.quantity)
-
-                if int(a[-2])* int(a[-3])*int(a[-4])*int(a[-1])!=0 :
+                if int(a[-2])!=0:
                     data.append(a)
                 else:
                     continue
@@ -60,28 +58,22 @@ class TradesHandle():
             self.html = df.head(5).to_html(classes='table', index=False)
             self.full_html=df.to_html(classes='table', index=False)
     def get_price(self, token):
-        if self.find_token(token):
+        today = date.today().day-2
+        year = date.today().year
+        month = date.today().month
 
-            today = date.today().day-2
-            year = date.today().year
-            month = date.today().month
-
-            #url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={token}&apikey={self.key}'
-            url = f'http://iss.moex.com/iss/engines/stock/markets/shares/securities/{token}/candles.json?from={year}-{month}-{today}&interval=24'
-            r = requests.get(url)
-            data = r.json()['candles']['data']
-            if len(data)>0:
-                price = data[0][1]
-                return price
-            else:
-                return 0
+        #url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={token}&apikey={self.key}'
+        url = f'http://iss.moex.com/iss/engines/stock/markets/shares/securities/{token}/candles.json?from={year}-{month}-{today}&interval=24'
+        r = requests.get(url)
+        data = r.json()['candles']['data']
+        if len(data)>0:
+            price = data[0][1]
+         
+            return price
         else:
-            return 0
+            return -1
     
     def generate_plots(self):
-        
-
-
         df = self.df
 
         today = date.today().day-2
@@ -90,8 +82,8 @@ class TradesHandle():
         data1=df[df['Тип сделки']=='Покупка']
         data1.groupby('Токен')['Стоимость при покупке'].mean()
         if not data1.empty:
-            self.barplot=plot(px.histogram(data1, x='Токен', y='Стоимость при покупке', barmode='group'),output_type='div', include_plotlyjs=False, show_link=False, link_text="")
-            self.pieplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость при покупке'),output_type='div', include_plotlyjs=False, show_link=False, link_text="")
+            self.barplot=plot(px.histogram(data1, x='Токен', y='Стоимость при покупке', barmode='group'),output_type='div')
+            self.pieplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость при покупке'),output_type='div')
             tokens = pd.unique(data1['Токен'])
             plots=[]
             for o in tokens:
@@ -108,20 +100,11 @@ class TradesHandle():
                     fig=px.line(list(frame['close'])).update_traces(showlegend=False)
                     fig.update_xaxes(title_text = '')
                     fig.update_yaxes(title_text = f' {str(o)}')
-                    plots.append(plot(fig,output_type='div', include_plotlyjs=False, show_link=False, link_text=""))
+                    plots.append(plot(fig,output_type='div'))
             self.cfplot=plots
                 
             
             #self.cfplot=plot(px.pie(data1, names = 'Токен', values = 'Стоимость сейчас'),output_type='div')
             #j = requests.get(f'http://iss.moex.com/iss/engines/stock/markets/shares/securities/{token}/candles.json?from={year-1}-{month}-{today}&till={year}-{month}-{today}&interval=24').json()
-    def find_token(self, token):
-        j = requests.get(f'https://iss.moex.com/iss/securities/{token}/indices.json')
-        j.encoding='utf-8'
-        messages.info(self.request, j)
-        j=json.loads(j.text)
-        j=j['indices']['data']
-        if len(j)>0:
-            return True
-        return False
-        
+
     
