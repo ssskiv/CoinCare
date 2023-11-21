@@ -14,16 +14,16 @@ class TransactionForm(forms.ModelForm):
     )
 
     date = forms.DateField(label="Дата", widget=AdminDateWidget(
-        attrs={'placeholder': "Введите дату"}), required=True)
+        attrs={'placeholder': "Введите дату", "style": "border-radius: 6px; border:1px solid; margin-bottom: 2%; box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2)"}), required=True)
     comment = forms.CharField(label="Комменатрий", required=False, widget=forms.TextInput(
-        attrs={"placeholder": "Добавьте комментарий"}))
+        attrs={"placeholder": "Добавьте комментарий", "style": "border-radius: 6px; border:1px solid; margin-bottom: 2%; box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2)"}))
     uid = forms.IntegerField(label="ID пользователя",
                              widget=forms.HiddenInput(), required=False)
     time = forms.TimeField(label="Время", widget=AdminTimeWidget(
-        attrs={'placeholder': 'Укажите время'}),
+        attrs={'placeholder': 'Укажите время', "style": "border-radius: 6px; border:1px solid; margin-bottom: 2%; box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2)"}),
         required=True)
     sum = forms.IntegerField(label="", widget=forms.NumberInput(
-        attrs={'placeholder': "Укажите сумму"}), required=True)
+        attrs={'placeholder': "Укажите сумму", "style": "border-radius: 6px; border:1px solid; margin-bottom: 2%; box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2)"}), required=True)
     transaction_type = forms.ChoiceField(
         choices=CATEGORIES, initial=True, widget=forms.Select(), required=True)
 

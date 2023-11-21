@@ -16,7 +16,7 @@
     <body>
         <div class = "background" style="background-image: url({% static 'reg/img/image2.png' %})">
 
-            <div id="square" style="margin-top: 10%; border-radius: 30px; border: 1px solid #4e4444; box-shadow: 0px 0px 0px rgb(44, 42, 42); height: 40vh;">
+            <div id="square" style="margin-top: 10%; border-radius: 30px; border: 1px solid #4e4444; box-shadow: 0px 0px 0px rgb(44, 42, 42); height: 40vh; box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5)">
                 <form method="post" style=" text-align: center" > 
                     <h2 class="text-center;" style="font-size: 165%">Добавление сделки</h2>
                         {% csrf_token %}
